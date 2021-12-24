@@ -1,0 +1,98 @@
+swagger: "2.0"
+info:
+  description: This is the swagger file that goes with our server code
+  version: "1.0.0"
+  title: Swagger Rest Article
+consumes:
+  - application/json
+produces:
+  - application/json
+
+basePath: /api
+
+# Paths supported by the server application
+paths:
+  /avocados:
+    get:
+      operationId: avocados.read_all
+      tags:
+        - Avocados
+      summary: Read the entire set of avocados, sorted by date
+      description: Read the entire set of avocados, sorted by date
+      responses:
+        200:
+          description: Successfully read avocados set operation
+          schema:
+            type: array
+            items:
+              properties:
+                date:
+                  type: string
+                  description: Date of avocado
+                avgprice:
+                  type: number
+                  description: Average price of the avocado
+                totalvol:
+                  type: integer
+                  description: Total volume of the avocado
+                avo_a:
+                  type: integer
+                  description: Volume A of the avocado
+                avo_b:
+                  type: number
+                  description: Volume B of the avocado
+                avo_c:
+                  type: number
+                  description: Volume C of the avocado
+                type:
+                  type: integer
+                  description: Type ID of the avocado
+                regionid:
+                  type: integer
+                  description: Region ID of the avocado
+  /regions:
+    get:
+      operationId: regions.read_all
+      tags:
+        - Regions
+      summary: Read the entire set of regions, sorted by regionid
+      description: Read the entire set of regions, sorted by regionid
+      responses:
+        200:
+          description: Successfully read regions set operation
+          schema:
+            type: array
+            items:
+              properties:
+                regionid:
+                  type: integer
+                  description: Region ID of regions
+                region:
+                  type: string
+                  description: Region description
+  /regions/{regionid}:
+    get:
+      operationId: regions.read_one
+      tags:
+        - Regions
+      summary: Read one region
+      description: Read one region
+      parameters:
+        - name: regionid
+          in: path
+          description: Id of the region to get
+          type: integer
+          required: True
+      responses:
+        200:
+          description: Successfully read region from regions data operation
+          schema:
+            type: array
+            properties:
+              regionid:
+                type: string
+                description: Id of the region
+              region:
+                type: string
+                description: Region description
+                
